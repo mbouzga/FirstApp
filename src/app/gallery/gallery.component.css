@@ -1,0 +1,12 @@
+.cadre {
+    height: 250px;
+}
+
+.userImg{
+    height: 50px;
+    width: 50px;
+}
+
+.clickable{
+    cursor: pointer;
+}

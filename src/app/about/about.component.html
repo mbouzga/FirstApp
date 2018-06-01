@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">About</div>
+      <div class="panel-body">
+        <div>
+          <div>
+            <form #aboutForm="ngForm" (ngSubmit) = "onAddCommentaire(aboutForm.value)" novalidate>
+              <div class="form-group" [class.has-error]="msgSubject.invalid && msgSubject.touched">
+                <label  for="message" class="control-label">Message</label>
+                <input type="text" name="message" ngModel required #msgSubject="ngModel" class="form-control" >
+                <button [disabled] ="!aboutForm.valid" class="btn btn-primary" type="submit" >Ajouter commentaire</button>
+              </div>
+          </form>
+          </div>
+          <h3>Informations</h3>
+          <ul class="list-group">
+            <li class="list-group-item">Contact : {{info.nom}}</li>
+            <li class="list-group-item">Email : {{info.email}}</li>
+            <li class="list-group-item">Tél : {{info.telephone}}</li>
+          </ul>
+        </div>
+        <hr>
+        <div>
+            <h3>Commentaires</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let c of comments">
+                {{c.message}} <span class="badge">{{c.date | date:'dd/MM/yyyy HH:mm'}}</span>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+  </div>
+</div>

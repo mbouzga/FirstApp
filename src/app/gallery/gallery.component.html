@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Gallery</div>
+        <div class="panel-body">
+            <form #galleryForm="ngForm" (ngSubmit) = "onSearch(galleryForm.value)" novalidate>
+                <div class="form-group" [class.has-error]="motCle.invalid && motCle.touched">
+                  <label  for="motCle" class="control-label">Message</label>
+                  <input type="text" name="motCle" ngModel required #motCle="ngModel" class="form-control" [(ngModel)]="motCleModel">
+                  <button [disabled] ="!galleryForm.valid" class="btn btn-primary" type="submit" >Chercher images</button>
+                </div>
+            </form>
+            <div class="row">
+              <div *ngIf="photos">
+                <!-- On peut utiliser ? pour verifier que photos existe (photos?.hits)-->
+                <div *ngFor="let photo of photos.hits" class="col-md-3"> 
+                  <div class="panel panel-primary cadre">
+                      <div class="panel-heading">
+                        <img src="{{photo.userImageURL}}" class="img-circle userImg"> <span>{{photo.user}}</span>
+                      </div>
+                        <div class="panel-body">
+                          <img src="{{photo.previewURL}}">
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <ul class="nav nav-pills">
+                  <li [ngClass]="{'active':currentPage==(i+1)}" class="clickable" *ngFor="let page of pages; let i=index;">
+                    <a (click)="goToPage(i)">{{i}}</a> 
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
